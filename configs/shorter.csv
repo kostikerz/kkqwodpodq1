@@ -1,0 +1,7 @@
+key,value
+package,A
+repository,../examples/shorter.csv
+test_mode,true
+output,../artifacts/shorter.png
+max_depth,3
+filter_substring,

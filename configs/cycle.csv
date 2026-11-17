@@ -1,0 +1,7 @@
+key,value
+package,A
+repository,../examples/cycle.csv
+test_mode,true
+output,../artifacts/cycle.png
+max_depth,10
+filter_substring,

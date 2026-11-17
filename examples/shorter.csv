@@ -1,0 +1,7 @@
+package,dependencies
+A,B D
+B,C
+C,D
+D,E
+E,F
+F,
