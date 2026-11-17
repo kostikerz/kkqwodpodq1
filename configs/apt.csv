@@ -1,0 +1,7 @@
+key,value
+package,apt
+repository,https://archive.ubuntu.com/ubuntu/dists/noble/main/binary-amd64/Packages.gz
+test_mode,false
+output,../artifacts/apt.png
+max_depth,2
+filter_substring,

@@ -6,6 +6,7 @@ import sys
 from dataclasses import asdict
 
 from .config import load_config
+from .repository import AptRepository, fetch_index
 
 
 def main(argv=None):
@@ -15,9 +16,12 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         config = load_config(args.config)
-        for key, value in asdict(config).items():
-            print(f"{key}={value}")
-    except (OSError, ValueError, csv.Error) as error:
+        if config.test_mode:
+            raise ValueError("Test graph mode is introduced in stage 3")
+        repository = AptRepository(fetch_index(config.repository))
+        for name in repository.dependencies(config.package):
+            print(name)
+    except (OSError, ValueError, KeyError, csv.Error) as error:
         print(f"Error: {error}", file=sys.stderr)
         return 1
     return 0
