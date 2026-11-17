@@ -1,0 +1,7 @@
+key,value
+package,A
+repository,../examples/graph.csv
+test_mode,true
+output,../artifacts/demo.png
+max_depth,10
+filter_substring,
