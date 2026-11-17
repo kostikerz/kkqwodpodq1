@@ -1,0 +1,32 @@
+name: Validate all stages
+on: [push, workflow_dispatch]
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: python -m unittest discover -v
+      - name: Download official PlantUML renderer
+        run: >-
+          curl -fL -o /tmp/plantuml.jar
+          https://repo.maven.apache.org/maven2/net/sourceforge/plantuml/plantuml/1.2025.2/plantuml-1.2025.2.jar
+      - name: Render three Ubuntu packages
+        env:
+          PLANTUML_JAR: /tmp/plantuml.jar
+        run: |
+          for package in apt bash coreutils; do
+            python -m src.cli "configs/$package.csv"
+          done
+      - name: Capture real apt reference outputs
+        run: sh scripts/compare_apt.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: diagrams-and-apt-reference
+          path: artifacts/

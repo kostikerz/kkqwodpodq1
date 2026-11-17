@@ -7,7 +7,10 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from src.repository import (
-    AptRepository, decode_index, dependency_groups, fetch_index, parse_control,
+    AptRepository,
+    decode_index,
+    dependency_groups,
+    fetch_index,
 )
 
 SAMPLE = """Package: app
@@ -40,6 +43,15 @@ class RepositoryTests(unittest.TestCase):
                          [["x", "y"], ["z"]])
         with self.assertRaises(ValueError):
             dependency_groups("???")
+
+    def test_invalid_dependency_suffixes(self):
+        """Do not silently truncate corrupt dependency metadata."""
+        for value in ["libc6???", "libc6 (nonsense)", "libc6,",
+                      "libc6 |", ",libc6", "libc6 (>= 2.0) junk"]:
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                dependency_groups(value)
+        self.assertEqual(dependency_groups("libc6:any (>= 2:2.39-0~1)"),
+                         [["libc6"]])
 
     def test_formats(self):
         """Read each supported compressed format using magic bytes."""

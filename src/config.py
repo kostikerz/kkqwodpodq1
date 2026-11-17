@@ -6,6 +6,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import urlsplit
 
+CSV_COLUMNS = 2
+CONTROL_CHARACTER_LIMIT = 32
+
 
 @dataclass(frozen=True)
 class Config:
@@ -27,7 +30,7 @@ def read_rows(path):
             raise ValueError("CSV header must be key,value")
         values = {}
         for row in reader:
-            if len(row) != 2:
+            if len(row) != CSV_COLUMNS:
                 raise ValueError("Each CSV row must have two columns")
             key, value = row
             if key in values:
@@ -45,12 +48,33 @@ def validate_repository(value, test_mode, base):
         if not value or not path.is_file():
             raise ValueError("repository must name an existing test file")
         return str(path)
+    return validate_url(value)
+
+
+def validate_url(value):
+    """Check URL structure, whitespace, port and forbidden credentials."""
     url = urlsplit(value)
     if url.scheme not in {"https", "http"} or not url.hostname:
         raise ValueError("repository must be an HTTP(S) URL")
+    if any(char.isspace() for char in value):
+        raise ValueError("repository URL cannot contain whitespace")
+    if url.port is not None:
+        int(url.port)
     if url.username or url.password or url.fragment:
         raise ValueError("repository URL cannot contain credentials/fragment")
     return value
+
+
+def validate_output(value, base):
+    """Validate a PNG filename and its existing parent directory."""
+    output = Path(value)
+    if output.suffix.lower() != ".png" or output.name == ".png":
+        raise ValueError("output must name a PNG file")
+    output = (base / output).resolve()
+    if output.is_dir() or (output.parent.exists()
+                           and not output.parent.is_dir()):
+        raise ValueError("output parent must be a directory")
+    return output
 
 
 def load_config(filename):
@@ -67,15 +91,9 @@ def load_config(filename):
     depth = values["max_depth"]
     if not re.fullmatch(r"[0-9]+", depth):
         raise ValueError("max_depth must be a non-negative integer")
-    output = Path(values["output"])
-    if output.suffix.lower() != ".png" or output.name == ".png":
-        raise ValueError("output must name a PNG file")
-    output = (path.parent / output).resolve()
-    if output.is_dir() or (output.parent.exists()
-                           and not output.parent.is_dir()):
-        raise ValueError("output parent must be a directory")
+    output = validate_output(values["output"], path.parent)
     substring = values["filter_substring"]
-    if any(ord(char) < 32 for char in substring):
+    if any(ord(char) < CONTROL_CHARACTER_LIMIT for char in substring):
         raise ValueError("filter_substring cannot contain control characters")
     repository = validate_repository(
         values["repository"], test_mode, path.parent

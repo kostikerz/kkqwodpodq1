@@ -1,5 +1,7 @@
 """Dependency-first component order with explicit cycle groups."""
 
+SINGLE_NODE = 1
+
 
 def finishing_order(edges):
     """Iterative DFS postorder, with no recursion even on long chains."""
@@ -48,7 +50,7 @@ def format_order(edges):
     """Mark cyclic components instead of inventing an internal ordering."""
     lines = []
     for position, group in enumerate(load_order(edges), start=1):
-        cyclic = len(group) > 1 or group[0] in edges[group[0]]
+        cyclic = len(group) > SINGLE_NODE or group[0] in edges[group[0]]
         label = "cycle group: " if cyclic else ""
         lines.append(f"{position}. {label}{', '.join(group)}")
     return "\n".join(lines)

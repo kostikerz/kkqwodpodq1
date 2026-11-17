@@ -63,7 +63,9 @@ class ConfigTests(unittest.TestCase):
     def test_real_repository(self):
         """Validate addresses in real repository mode."""
         self.values.update(test_mode="false", package="apt")
-        for url in ["file:///tmp/Packages", "https://", "ftp://host/x"]:
+        for url in ["file:///tmp/Packages", "https://", "ftp://host/x",
+                    "https://host:invalid/Packages", "https://bad host/x",
+                    "https://host:99999/Packages"]:
             self.values["repository"] = url
             with self.assertRaises(ValueError):
                 self.load()

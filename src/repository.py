@@ -6,6 +6,11 @@ import lzma
 import re
 from urllib.request import Request, urlopen
 
+DEPENDENCY_PATTERN = re.compile(
+    r"([a-z0-9][a-z0-9+.-]*)(?::[a-z0-9][a-z0-9-]*)?"
+    r"(?:\s*\((?:<<|<=|=|>=|>>)\s*[0-9][A-Za-z0-9.+:~\-]*\))?"
+)
+
 
 def parse_control(text):
     """Parse Debian control paragraphs and continuation lines."""
@@ -30,12 +35,12 @@ def parse_control(text):
 def dependency_groups(value):
     """Extract alternative groups, stripping versions and qualifiers."""
     groups = []
+    if not value.strip():
+        return groups
     for group in value.split(","):
-        if not group.strip():
-            continue
         names = []
         for alternative in group.split("|"):
-            match = re.match(r"\s*([a-z0-9][a-z0-9+.-]*)", alternative)
+            match = DEPENDENCY_PATTERN.fullmatch(alternative.strip())
             if not match:
                 raise ValueError(f"Invalid dependency: {alternative}")
             names.append(match[1])

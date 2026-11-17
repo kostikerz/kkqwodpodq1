@@ -1,0 +1,189 @@
+Package: adduser
+Version: 3.137ubuntu1
+Depends: passwd
+
+Package: apt
+Version: 2.7.14build2
+Depends: base-passwd (>= 3.6.1) | adduser, gpgv, libapt-pkg6.0t64 (>= 2.7.14build2), ubuntu-keyring, libc6 (>= 2.38), libgcc-s1 (>= 3.3.1), libgnutls30t64 (>= 3.8.1), libseccomp2 (>= 2.4.2), libstdc++6 (>= 13.1), libsystemd0
+Provides: apt-transport-https (= 2.7.14build2)
+
+Package: base-files
+Version: 13ubuntu10
+Pre-Depends: awk
+Depends: libc6 (>= 2.34), libcrypt1 (>= 1:4.4.10-10ubuntu3)
+Provides: base, usr-is-merged
+
+Package: base-passwd
+Version: 3.6.3build1
+Depends: libc6 (>= 2.34), libdebconfclient0 (>= 0.145), libselinux1 (>= 3.1~)
+
+Package: bash
+Version: 5.2.21-2ubuntu4
+Pre-Depends: libc6 (>= 2.38), libtinfo6 (>= 6)
+Depends: base-files (>= 2.1.12), debianutils (>= 5.6-0.1)
+
+Package: coreutils
+Version: 9.4-3ubuntu6
+Pre-Depends: libacl1 (>= 2.2.23), libattr1 (>= 1:2.4.48), libc6 (>= 2.38), libgmp10 (>= 2:6.3.0+dfsg), libselinux1 (>= 3.1~), libssl3t64 (>= 3.0.0)
+
+Package: debianutils
+Version: 5.17build1
+Pre-Depends: libc6 (>= 2.38)
+
+Package: gcc-14-base
+Version: 14-20240412-0ubuntu1
+
+Package: gpgv
+Version: 2.4.4-2ubuntu17
+Depends: libassuan0 (>= 2.5.0), libbz2-1.0, libc6 (>= 2.38), libgcrypt20 (>= 1.10.0), libgpg-error0 (>= 1.46), libnpth0t64 (>= 0.90), zlib1g (>= 1:1.1.4)
+
+Package: libacl1
+Version: 2.3.2-1build1
+Depends: libc6 (>= 2.38)
+
+Package: libapt-pkg6.0t64
+Version: 2.7.14build2
+Depends: libbz2-1.0, libc6 (>= 2.38), libgcc-s1 (>= 3.3.1), libgcrypt20 (>= 1.10.0), liblz4-1 (>= 0.0~r127), liblzma5 (>= 5.1.1alpha+20120614), libstdc++6 (>= 13.1), libsystemd0 (>= 221), libudev1 (>= 183), libxxhash0 (>= 0.7.1), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.2.2.3)
+Provides: libapt-pkg (= 2.7.14build2), libapt-pkg6.0 (= 2.7.14build2)
+
+Package: libassuan0
+Version: 2.5.6-1build1
+Depends: libc6 (>= 2.38), libgpg-error0 (>= 1.33)
+
+Package: libattr1
+Version: 1:2.5.2-1build1
+Depends: libc6 (>= 2.4)
+
+Package: libbz2-1.0
+Version: 1.0.8-5.1
+Depends: libc6 (>= 2.4)
+
+Package: libc6
+Version: 2.39-0ubuntu8
+Depends: libgcc-s1
+
+Package: libcap2
+Version: 1:2.66-5ubuntu2
+Depends: libc6 (>= 2.38)
+
+Package: libcrypt1
+Version: 1:4.4.36-4build1
+Depends: libc6 (>= 2.38)
+
+Package: libdebconfclient0
+Version: 0.271ubuntu3
+Depends: libc6 (>= 2.38)
+
+Package: libgcc-s1
+Version: 14-20240412-0ubuntu1
+Depends: gcc-14-base (= 14-20240412-0ubuntu1), libc6 (>= 2.35)
+Provides: libgcc1 (= 1:14-20240412-0ubuntu1)
+
+Package: libgcrypt20
+Version: 1.10.3-2build1
+Depends: libc6 (>= 2.38), libgpg-error0 (>= 1.27)
+
+Package: libgmp10
+Version: 2:6.3.0+dfsg-2ubuntu6
+Depends: libc6 (>= 2.38)
+
+Package: libgnutls30t64
+Version: 3.8.3-1.1ubuntu3
+Depends: libc6 (>= 2.38), libgmp10 (>= 2:6.3.0+dfsg), libhogweed6t64 (>= 3.6), libidn2-0 (>= 2.0.0), libnettle8t64 (>= 3.9~), libp11-kit0 (>= 0.25.1), libtasn1-6 (>= 4.14), libunistring5 (>= 1.1)
+Provides: libgnutls30 (= 3.8.3-1.1ubuntu3)
+
+Package: libgpg-error0
+Version: 1.47-3build2
+Depends: libc6 (>= 2.38)
+
+Package: libhogweed6t64
+Version: 3.9.1-2.2build1
+Depends: libc6 (>= 2.14), libgmp10 (>= 2:6.3.0+dfsg), libnettle8t64
+Provides: libhogweed6 (= 3.9.1-2.2build1)
+
+Package: libidn2-0
+Version: 2.3.7-2build1
+Depends: libc6 (>= 2.14), libunistring5 (>= 1.1)
+
+Package: liblz4-1
+Version: 1.9.4-1build1
+Depends: libc6 (>= 2.14)
+
+Package: liblzma5
+Version: 5.6.1+really5.4.5-1
+Depends: libc6 (>= 2.34)
+
+Package: libnettle8t64
+Version: 3.9.1-2.2build1
+Depends: libc6 (>= 2.17)
+Provides: libnettle8 (= 3.9.1-2.2build1)
+
+Package: libnpth0t64
+Version: 1.6-3.1build1
+Depends: libc6 (>= 2.34)
+Provides: libnpth0 (= 1.6-3.1build1)
+
+Package: libp11-kit0
+Version: 0.25.3-4ubuntu2
+Depends: libc6 (>= 2.38), libffi8 (>= 3.4)
+
+Package: libpcre2-8-0
+Version: 10.42-4ubuntu2
+Depends: libc6 (>= 2.34)
+
+Package: libseccomp2
+Version: 2.5.5-1ubuntu3
+Depends: libc6 (>= 2.4)
+
+Package: libselinux1
+Version: 3.5-2ubuntu2
+Depends: libc6 (>= 2.38), libpcre2-8-0 (>= 10.22)
+
+Package: libssl3t64
+Version: 3.0.13-0ubuntu3
+Depends: libc6 (>= 2.38)
+Provides: libssl3 (= 3.0.13-0ubuntu3)
+
+Package: libstdc++6
+Version: 14-20240412-0ubuntu1
+Depends: gcc-14-base (= 14-20240412-0ubuntu1), libc6 (>= 2.38), libgcc-s1 (>= 4.3)
+
+Package: libsystemd0
+Version: 255.4-1ubuntu8
+Depends: libc6 (>= 2.38), libcap2 (>= 1:2.10), libgcrypt20 (>= 1.10.0), liblz4-1 (>= 0.0~r122), liblzma5 (>= 5.1.1alpha+20120614), libzstd1 (>= 1.5.5)
+
+Package: libtasn1-6
+Version: 4.19.0-3build1
+Depends: libc6 (>= 2.38)
+
+Package: libtinfo6
+Version: 6.4+20240113-1ubuntu2
+Depends: libc6 (>= 2.34)
+
+Package: libudev1
+Version: 255.4-1ubuntu8
+Depends: libc6 (>= 2.38), libcap2 (>= 1:2.10)
+
+Package: libunistring5
+Version: 1.1-2build1
+Depends: libc6 (>= 2.34)
+
+Package: libxxhash0
+Version: 0.8.2-2build1
+Depends: libc6 (>= 2.14)
+
+Package: libzstd1
+Version: 1.5.5+dfsg2-2build1
+Depends: libc6 (>= 2.34)
+
+Package: passwd
+Version: 1:4.13+dfsg1-4ubuntu3
+Depends: libaudit1 (>= 1:2.2.1), libc6 (>= 2.38), libcrypt1 (>= 1:4.1.0), libpam0g (>= 0.99.7.1), libselinux1 (>= 3.1~), libsemanage2 (>= 2.0.32), libpam-modules
+
+Package: ubuntu-keyring
+Version: 2023.11.28.1
+
+Package: zlib1g
+Version: 1:1.3.dfsg-3.1ubuntu2
+Depends: libc6 (>= 2.14)
+Provides: libz1

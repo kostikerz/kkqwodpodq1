@@ -5,6 +5,8 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
+CSV_COLUMNS = 2
+
 
 class TestRepository:
     """Strict CSV graph of upper-case Latin package names."""
@@ -17,7 +19,7 @@ class TestRepository:
             if next(reader, None) != ["package", "dependencies"]:
                 raise ValueError("Test graph header: package,dependencies")
             for row in reader:
-                if len(row) != 2:
+                if len(row) != CSV_COLUMNS:
                     raise ValueError("Test graph row needs two columns")
                 name, raw = row
                 children = raw.split()
@@ -45,6 +47,13 @@ class Graph:
     missing: set = field(default_factory=set)
 
 
+def filter_children(children, substring):
+    """Remove excluded names and duplicates while preserving order."""
+    included = (child for child in children
+                if not substring or substring not in child)
+    return list(dict.fromkeys(included))
+
+
 def build_graph(repository, root, max_depth, substring=""):
     """Use a LIFO stack, revisiting nodes reached by a shorter path."""
     if substring and substring in root:
@@ -64,8 +73,7 @@ def build_graph(repository, root, max_depth, substring=""):
         except KeyError:
             result.missing.add(name)
             continue
-        children = [child for child in children
-                    if not substring or substring not in child]
-        result.edges[name] = list(dict.fromkeys(children))
+        children = filter_children(children, substring)
+        result.edges[name] = children
         stack.extend((child, depth + 1) for child in reversed(children))
     return result

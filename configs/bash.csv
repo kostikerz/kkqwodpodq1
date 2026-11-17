@@ -1,0 +1,7 @@
+key,value
+package,bash
+repository,https://archive.ubuntu.com/ubuntu/dists/noble/main/binary-amd64/Packages.gz
+test_mode,false
+output,../artifacts/bash.png
+max_depth,2
+filter_substring,
