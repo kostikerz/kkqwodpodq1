@@ -1,0 +1,9 @@
+1. libgcc-s1
+2. libc6
+3. libacl1
+4. libattr1
+5. libgmp10
+6. libpcre2-8-0
+7. libselinux1
+8. libssl3t64
+9. coreutils

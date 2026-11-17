@@ -1,0 +1,10 @@
+coreutils:
+  Installed: 9.4-3ubuntu6.3
+  Candidate: 9.4-3ubuntu6.3
+  Version table:
+ *** 9.4-3ubuntu6.3 500
+        500 mirror+file:/etc/apt/apt-mirrors.txt noble-updates/main amd64 Packages
+        500 mirror+file:/etc/apt/apt-mirrors.txt noble-security/main amd64 Packages
+        100 /var/lib/dpkg/status
+     9.4-3ubuntu6 500
+        500 mirror+file:/etc/apt/apt-mirrors.txt noble/main amd64 Packages

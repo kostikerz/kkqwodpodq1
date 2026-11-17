@@ -1,0 +1,56 @@
+{
+  "archive_sha256": "9e2c30948b4cd41298ee948834d574647bef3d2dcca39736a7db2caf8e79b714",
+  "packages": [
+    {
+      "package": "apt",
+      "puml_matches_committed": true,
+      "own_version": "2.7.14build2",
+      "direct_count": 11,
+      "direct_match": true,
+      "dot_full_nodes": 103,
+      "dot_full_edges": 190,
+      "dot_unique_edges": 189,
+      "dot_green_edges": 57,
+      "own_nodes": 35,
+      "own_edges": 55,
+      "bounded_dot_nodes": 35,
+      "bounded_dot_edges": 55,
+      "missing_in_dot": [],
+      "missing_in_ours": []
+    },
+    {
+      "package": "bash",
+      "puml_matches_committed": true,
+      "own_version": "5.2.21-2ubuntu4",
+      "direct_count": 4,
+      "direct_match": true,
+      "dot_full_nodes": 88,
+      "dot_full_edges": 149,
+      "dot_unique_edges": 148,
+      "dot_green_edges": 48,
+      "own_nodes": 8,
+      "own_edges": 10,
+      "bounded_dot_nodes": 8,
+      "bounded_dot_edges": 10,
+      "missing_in_dot": [],
+      "missing_in_ours": []
+    },
+    {
+      "package": "coreutils",
+      "puml_matches_committed": true,
+      "own_version": "9.4-3ubuntu6",
+      "direct_count": 6,
+      "direct_match": true,
+      "dot_full_nodes": 38,
+      "dot_full_edges": 50,
+      "dot_unique_edges": 49,
+      "dot_green_edges": 23,
+      "own_nodes": 9,
+      "own_edges": 13,
+      "bounded_dot_nodes": 9,
+      "bounded_dot_edges": 13,
+      "missing_in_dot": [],
+      "missing_in_ours": []
+    }
+  ]
+}

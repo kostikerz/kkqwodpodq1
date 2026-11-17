@@ -1,0 +1,8 @@
+1. libgcc-s1
+2. libc6
+3. libtinfo6
+4. awk
+5. libcrypt1
+6. base-files
+7. debianutils
+8. bash

@@ -6,7 +6,6 @@ from collections import deque
 
 from src.graph import build_graph
 from src.order import load_order
-
 from tests.test_graph import MemoryRepository
 
 NAMES = ("A", "B", "C")
