@@ -8,6 +8,7 @@ from dataclasses import asdict
 from .config import load_config
 from .repository import AptRepository, fetch_index
 from .graph import TestRepository, build_graph
+from .order import format_order
 
 
 def execute(config, stage):
@@ -23,8 +24,11 @@ def execute(config, stage):
         return
     graph = build_graph(repository, config.package, config.max_depth,
                         config.filter_substring)
-    for name, children in graph.edges.items():
-        print(f"{name}: {' '.join(children)}")
+    if stage == 4:
+        print(format_order(graph.edges))
+    else:
+        for name, children in graph.edges.items():
+            print(f"{name}: {' '.join(children)}")
     if graph.missing:
         print("Warning: absent in index: " + ", ".join(sorted(graph.missing)),
               file=sys.stderr)
@@ -34,7 +38,7 @@ def main(argv=None):
     """Print validated configuration and return a process exit code."""
     parser = argparse.ArgumentParser(description="Ubuntu dependency graph")
     parser.add_argument("config", help="CSV configuration filename")
-    parser.add_argument("--stage", type=int, choices=range(1, 4), default=3)
+    parser.add_argument("--stage", type=int, choices=range(1, 5), default=4)
     args = parser.parse_args(argv)
     try:
         config = load_config(args.config)
